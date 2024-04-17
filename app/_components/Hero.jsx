@@ -15,7 +15,7 @@ const Hero = () => {
       </h2>
       <div className="mt-4 flex items-center gap-3">
         <Input
-          placeHolder="search"
+          placeholder="search"
           className="rounded-full w-[400px] h-[50px]"
         />
         <Button className="rounded-full h-[46-px]">
