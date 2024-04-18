@@ -3,11 +3,14 @@ import React, { useEffect, useState } from "react";
 import Hero from "./_components/Hero";
 import CategoryList from "./_components/CategoryList";
 import GlobalApi from "./_services/GlobalApi";
+import BusinessList from "./_components/BusinessList";
 
 const Home = () => {
   const [categoryList, setCategoryList] = useState([]);
+  const [businessList, setBusinessList] = useState([]);
   useEffect(() => {
     getCategoryList();
+    getBusinessList();
   }, []);
 
   const getCategoryList = () => {
@@ -15,10 +18,17 @@ const Home = () => {
       setCategoryList(response.categories);
     });
   };
+
+  const getBusinessList = () => {
+    GlobalApi.getAllBusinessDetails().then((response) => {
+      setBusinessList(response.businessLists);
+    });
+  };
   return (
     <div>
       <Hero />
       <CategoryList categoryList={categoryList} />
+      <BusinessList businessList={businessList} title={"Popular Services"} />
     </div>
   );
 };
