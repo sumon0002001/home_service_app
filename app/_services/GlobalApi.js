@@ -48,7 +48,35 @@ const getAllBusinessDetails = async () => {
   return response;
 };
 
+const getBusinessByCategory = async (category) => {
+  const query =
+    gql`
+    query MyQuery {
+      businessLists(where: { category: { name: "` +
+    category +
+    `" } }) {
+        about
+        address
+        category {
+          name
+        }
+        contactPerson
+        email
+        id
+        name
+        images {
+          url
+        }
+      }
+    }
+  `;
+
+  const response = await request(MASTER_URL, query);
+  return response;
+};
+
 export default {
   getCategory,
   getAllBusinessDetails,
+  getBusinessByCategory,
 };
