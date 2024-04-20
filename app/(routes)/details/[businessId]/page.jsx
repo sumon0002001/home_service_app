@@ -40,11 +40,11 @@ const BusinessDetails = ({ params }) => {
     business && (
       <div className="py-8 md:py-20 px-10 md:px-36">
         <BusinessInfo business={business} />
-        <div className="grid grid-cols-3 mt-16">
+        <div className="grid grid-cols-4 mt-16">
           <div className="col-span-3 md:col-span-2 order-last md:order-first">
             <BusinessDescription business={business} />
           </div>
-          <div>
+          <div className="hidden md:block">
             <SuggestedBusinessList business={business} />
           </div>
         </div>

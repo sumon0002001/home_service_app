@@ -1,6 +1,6 @@
 import React from "react";
 
-const BusinessDescription = () => {
+const BusinessDescription = ({business}) => {
   return <div>businessd description</div>;
 };
 
