@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import GlobalApi from "@/app/_services/GlobalApi";
 import Link from "next/link";
 import Image from "next/image";
+import BookingSection from "./BookingSection";
 
 const SuggestedBusinessList = ({ business }) => {
   const [businessList, setBusinessList] = useState([]);
@@ -17,10 +18,13 @@ const SuggestedBusinessList = ({ business }) => {
   };
   return (
     <div className="md:pl-10">
-      <Button className="flex gap-2 w-full">
-        <NotebookPen />
-        Book Appointment
-      </Button>
+      <BookingSection business={business}>
+        <Button className="flex gap-2 w-full">
+          <NotebookPen />
+          Book Appointment
+        </Button>
+      </BookingSection>
+
       <div className="hidden md:block">
         <h2 className="font-bold text-lg mt-3 mb-3">Similar Business</h2>
         <div>
