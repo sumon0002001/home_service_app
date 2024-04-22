@@ -20,12 +20,22 @@ const BookingSection = ({ children, business }) => {
   const [date, setDate] = useState(new Date());
   const [timeSlot, setTimeSlot] = useState([]);
   const [selectedTime, setSelectedTime] = useState();
+  const [bookedSlot, setBookedSlot] = useState([]);
   const { data } = useSession();
 
   useEffect(() => {
     getTime();
   }, []);
 
+  useEffect(() => {
+    date && BusinessBookedSlot();
+  }, [date]);
+
+  const BusinessBookedSlot = () => {
+    GlobalApi.BusinessBookedSlot(business.id, date).then((res) => {
+      setBookedSlot(res.bookings);
+    });
+  };
   const getTime = () => {
     const timeList = [];
     for (let i = 10; i <= 12; i++) {
@@ -57,7 +67,6 @@ const BookingSection = ({ children, business }) => {
       data.user.name
     ).then(
       (res) => {
-        console.log(res);
         if (res) {
           setDate();
           setSelectedTime("");
@@ -68,6 +77,10 @@ const BookingSection = ({ children, business }) => {
         toast("error!!! Something is wrong! Please try again!!!");
       }
     );
+  };
+
+  const isBooked = (time) => {
+    return bookedSlot.find((item) => item.time === time);
   };
   return (
     <div>
@@ -93,6 +106,7 @@ const BookingSection = ({ children, business }) => {
                   <Button
                     key={index}
                     variant="outiline"
+                    disabled={isBooked(item.time)}
                     className={`border rounded-full p-2 px-3 hover:bg-primary hover:text-white ${
                       selectedTime == item.time && "bg-primary text-white"
                     }`}
