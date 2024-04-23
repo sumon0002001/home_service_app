@@ -26,7 +26,7 @@ Developed with Next.js and leveraging its server-side rendering capabilities, th
 - Shadcn/ui
 - Tailwind CSS
 - Hygraph
--
+- Descope
 
 ## <a name="features">🔋 Features</a>
 
