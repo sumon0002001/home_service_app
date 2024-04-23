@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="/screen.png">
+<img src="./public/screen.png">
 
   <h3 align="center">Sahreen Home Service App</h3>
 
