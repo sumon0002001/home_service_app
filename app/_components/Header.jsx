@@ -11,6 +11,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import Link from "next/link";
 
 const Header = () => {
   const { data } = useSession();
@@ -44,7 +45,9 @@ const Header = () => {
             <DropdownMenuContent>
               <DropdownMenuLabel>My Account</DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>MY booking</DropdownMenuItem>
+              <DropdownMenuItem>
+                <Link href={"/mybooking/"}>MY booking</Link>
+              </DropdownMenuItem>
               <DropdownMenuItem onClick={() => signOut()}>
                 Log Out
               </DropdownMenuItem>

@@ -15,6 +15,7 @@ import { Button } from "@/components/ui/button";
 import GlobalApi from "@/app/_services/GlobalApi";
 import { useSession } from "next-auth/react";
 import { toast } from "sonner";
+import moment from "moment";
 
 const BookingSection = ({ children, business }) => {
   const [date, setDate] = useState(new Date());
@@ -32,7 +33,10 @@ const BookingSection = ({ children, business }) => {
   }, [date]);
 
   const BusinessBookedSlot = () => {
-    GlobalApi.BusinessBookedSlot(business.id, date).then((res) => {
+    GlobalApi.BusinessBookedSlot(
+      business.id,
+      moment(date).format("DD-MM-YYYY")
+    ).then((res) => {
       setBookedSlot(res.bookings);
     });
   };
@@ -61,7 +65,7 @@ const BookingSection = ({ children, business }) => {
   const saveBooking = () => {
     GlobalApi.createNewBooking(
       business.id,
-      date,
+      moment(date).format("DD-MM-YYYY"),
       selectedTime,
       data.user.email,
       data.user.name
